@@ -3,3 +3,9 @@ Tasks
 Change lost dog submision form to include:
 Image
 Your Location
+
+
+
+Geolocation
+1. Get current users current nearest town showing on the lost dogs page
+2. Let users input their location when adding a found dog to the service

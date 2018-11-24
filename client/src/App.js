@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home.js';
 import LostDog from './components/LostDog.js';
 import FoundDog from './components/FoundDog.js';
+import Header from './components/Header.js'
 
 class App extends Component {
     constructor(props) {
@@ -27,11 +28,12 @@ class App extends Component {
     }
   }
 
-    getDataFromDb = () => {
-        fetch("/api/getData")
-            .then(data => data.json())
-            .then(res => this.setState({ data: res.data }));
-    };
+  getDataFromDb() {
+      fetch("/api/getData")
+          .then(data => data.json())
+          .then(res => this.setState({ data: res.data }))
+          .catch(() => {console.log("error")});
+  };
 
   componentWillUnmount() {
     if (this.state.intervalIsSet) {
@@ -44,6 +46,8 @@ class App extends Component {
     const { data } = this.state;
     return (
         <BrowserRouter>
+          <div>
+            <Header />
             <Switch>
                 <Route exact path='/' render={(props) => (
                     <Home />
@@ -55,6 +59,7 @@ class App extends Component {
                     <FoundDog />
                 )}/>
             </Switch>
+          </div>
         </BrowserRouter>
     );
   }
